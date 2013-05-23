@@ -1,0 +1,56 @@
+<?xml version='1.0'?>
+<sdf version='1.3'>
+  <model name="sherpa_map">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <heightmap>
+	      <uri>file://map/terrain.png</uri>
+	      <size>1290 1290 300</size>
+	      <pos>0 0 -100</pos>
+	    </heightmap>
+          </geometry>
+        </collision>
+        <!--FIX TEXTURES AS SOON AS THERE IS TIME FOR THIS-->
+        <visual name="visual">
+          <geometry>
+            <heightmap>
+              <texture>
+                <diffuse>file://media/materials/textures/GrassFrozen.png</diffuse>
+                <normal>file://media/materials/textures/flat_normal.png</normal>
+                <size>50</size>
+              </texture>
+              <texture>
+                <diffuse>file://media/materials/textures/Snow.png</diffuse>
+                <normal>file://media/materials/textures/flat_normal.png</normal>
+                <size>20</size>
+              </texture>
+              <texture>
+                <diffuse>file://media/materials/textures/RockRough.png</diffuse>
+                <normal>file://media/materials/textures/flat_normal.png</normal>
+                <size>80</size>
+              </texture>
+              <blend>
+                <min_height>2</min_height>
+                <fade_dist>5</fade_dist>
+              </blend>
+              <blend>
+                <min_height>4</min_height>
+                <fade_dist>5</fade_dist>
+              </blend>
+              <uri>file://map/terrain.png</uri>
+              <size>1290 1290 300</size>
+              <pos>0 0 -100</pos>
+            </heightmap>
+            <!--heightmap>
+	      <uri>file://map/map.png</uri>
+	      <size>129 129 10</size>
+	      <pos>0 0 0</pos>
+	    </heightmap-->
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+</sdf>

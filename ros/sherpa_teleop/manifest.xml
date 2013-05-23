@@ -1,0 +1,16 @@
+<package>
+  <description brief="sherpa_teleop">
+
+     sherpa_teleop
+
+  </description>
+  <author>bbrieber</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/sherpa_teleop</url>
+  <depend package="geometry_msgs"/>
+  <depend package="rospy"/>
+
+</package>
+
+

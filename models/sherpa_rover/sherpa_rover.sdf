@@ -1,0 +1,142 @@
+<?xml version='1.0'?>
+<sdf version="1.4">
+	<model name="sherpa_rover">
+		<pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
+		<static>false</static>
+		<link name="main_body">
+			<pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
+			<visual name="Back_Left_Wheel_Ext_visual">
+				<pose>2.7857017517089844 -2.0132253170013428 0.5691867470741272 -1.3159823453179342e-08 -0.4363322854042053 -5.984919226875718e-08</pose>
+				<geometry>
+					<mesh><uri>model://sherpa_rover/meshes/Loose_Wheel.dae</uri></mesh>
+				</geometry>
+			</visual>
+			<visual name="Back_Right_Wheel_Ext_visual">
+				<pose>2.7857017517089844 2.0132253170013428 0.5691867470741272 0.0 -2.705261468887329 3.1415939331054688</pose>
+				<geometry>
+					<mesh><uri>model://sherpa_rover/meshes/Loose_Wheel.dae</uri></mesh>
+				</geometry>
+			</visual>
+			<visual name="Body_visual">
+				<pose>0.016823338344693184 -3.2497106872142467e-07 1.6217865943908691 0.0 0.0 0.0</pose>
+				<geometry>
+					<mesh><uri>model://sherpa_rover/meshes/Body.dae</uri></mesh>
+				</geometry>
+			</visual>
+			<visual name="Box_visual">
+				<pose>0.320368230342865 -5.669776896866097e-07 3.176807165145874 0.0 0.0 0.0</pose>
+				<geometry>
+					<mesh><uri>model://sherpa_rover/meshes/Box.dae</uri></mesh>
+				</geometry>
+			</visual>
+			<visual name="Front_Left_Wheel_Ext_visual">
+				<pose>-1.3952844142913818 -2.0132253170013428 0.5691867470741272 0.0 -2.705261468887329 0.0</pose>
+				<geometry>
+					<mesh><uri>model://sherpa_rover/meshes/Loose_Wheel.dae</uri></mesh>
+				</geometry>
+			</visual>
+			<visual name="Front_Right_Wheel_Ext_visual">
+				<pose>-1.3952844142913818 2.0132253170013428 0.5691867470741272 0.0 -0.43633249402046204 3.1415939331054688</pose>
+				<geometry>
+					<mesh><uri>model://sherpa_rover/meshes/Loose_Wheel.dae</uri></mesh>
+				</geometry>
+			</visual>
+			<visual name="Main_Wheel_Left_visual">
+				<pose>0.6577029824256897 1.3908005952835083 0.5691872239112854 0.0 0.0 0.0</pose>
+				<geometry>
+					<mesh><uri>model://sherpa_rover/meshes/Main_Wheel.dae</uri></mesh>
+				</geometry>
+			</visual>
+			<visual name="Main_Wheel_Right_visual">
+				<pose>0.6577029824256897 -1.3908005952835083 0.5691872239112854 0.0 0.0 0.0</pose>
+				<geometry>
+					<mesh><uri>model://sherpa_rover/meshes/Main_Wheel.dae</uri></mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="Back_Wheel_Left">
+			<pose>2.7857017517089844 -1.420549750328064 0.5691867470741272 1.570796251296997 2.220446049250313e-16 2.220445916901415e-16</pose>
+			<visual name="Back_Wheel_Left_visual">
+				<pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
+				<geometry>
+					<box><size>0 0 0</size></box>
+				</geometry>
+			</visual>
+			<collision name="collision">
+				<geometry>
+					<cylinder><radius>0.5</radius><length>.5</length></cylinder>				</geometry>
+			</collision>
+		</link>
+		<joint type="revolute" name="Back_Wheel_Left_JOINT">
+			<pose>2.7857017517089844 -1.420549750328064 0.5691867470741272 1.570796251296997 2.220446049250313e-16 2.220445916901415e-16</pose>
+			<child>Back_Wheel_Left</child>
+			<parent>main_body</parent>
+			<axis>
+				<xyz>0 1 0</xyz>
+			</axis>
+		</joint>
+		<link name="Back_Wheel_Right">
+			<pose>2.7857017517089844 1.420549750328064 0.5691867470741272 -1.570796251296997 -2.220445916901415e-16 2.220445784552517e-16</pose>
+			<visual name="Back_Wheel_Right_visual">
+				<pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
+				<geometry>
+					<box><size>0 0 0</size></box>
+				</geometry>
+			</visual>
+			<collision name="collision">
+				<geometry>
+					<cylinder><radius>0.5</radius><length>.5</length></cylinder>				</geometry>
+			</collision>
+		</link>
+		<joint type="revolute" name="Back_Wheel_Right_JOINT">
+			<pose>2.7857017517089844 1.420549750328064 0.5691867470741272 -1.570796251296997 -2.220445916901415e-16 2.220445784552517e-16</pose>
+			<child>Back_Wheel_Right</child>
+			<parent>main_body</parent>
+			<axis>
+				<xyz>0 1 0</xyz>
+			</axis>
+		</joint>
+		<link name="Front_Wheel_Left">
+			<pose>-1.3658623695373535 -1.420549750328064 0.5691867470741272 1.570796251296997 2.220446049250313e-16 2.220445916901415e-16</pose>
+			<visual name="Front_Wheel_Left_visual">
+				<pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
+				<geometry>
+					<box><size>0 0 0</size></box>
+				</geometry>
+			</visual>
+			<collision name="collision">
+				<geometry>
+					<cylinder><radius>0.5</radius><length>.5</length></cylinder>				</geometry>
+			</collision>
+		</link>
+		<joint type="revolute" name="Front_Wheel_Left_JOINT">
+			<pose>-1.3658623695373535 -1.420549750328064 0.5691867470741272 1.570796251296997 2.220446049250313e-16 2.220445916901415e-16</pose>
+			<child>Front_Wheel_Left</child>
+			<parent>main_body</parent>
+			<axis>
+				<xyz>0 1 0</xyz>
+			</axis>
+		</joint>
+		<link name="Front_Wheel_Right">
+			<pose>-1.3658623695373535 1.420549750328064 0.5691867470741272 -1.570796251296997 -2.220445916901415e-16 2.220445784552517e-16</pose>
+			<visual name="Front_Wheel_Right_visual">
+				<pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
+				<geometry>
+					<box><size>0 0 0</size></box>
+				</geometry>
+			</visual>
+			<collision name="collision">
+				<geometry>
+					<cylinder><radius>0.5</radius><length>.5</length></cylinder>				</geometry>
+			</collision>
+		</link>
+		<joint type="revolute" name="Front_Wheel_Right_JOINT">
+			<pose>-1.3658623695373535 1.420549750328064 0.5691867470741272 -1.570796251296997 -2.220445916901415e-16 2.220445784552517e-16</pose>
+			<child>Front_Wheel_Right</child>
+			<parent>main_body</parent>
+			<axis>
+				<xyz>0 1 0</xyz>
+			</axis>
+		</joint>
+	</model>
+</sdf>

@@ -1,0 +1,35 @@
+// jacket genrated by blender2ogre 0.5.9
+
+material jacket 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass jacket
+        {
+            ambient 0.4292246699333191 0.04464741423726082 0.02824726141989231 1.0
+            diffuse 0.34337974106341207 0.03571793192204731 0.022597809472647445 1.0
+            specular 0.16265061497688293 0.16265061497688293 0.16265061497688293 1.0 12.5
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}

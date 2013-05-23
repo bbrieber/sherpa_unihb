@@ -1,0 +1,8 @@
+ package sherpa_gazebo.msgs;
+ 
+ message sherpa_animation_pose
+ {
+    required string name = 1;
+    optional bool loop = 2 [default = true];
+    optional bool keep = 3 [default = false];
+ }

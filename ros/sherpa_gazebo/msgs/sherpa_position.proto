@@ -1,0 +1,9 @@
+ package sherpa_gazebo.msgs;
+ 
+ message sherpa_position
+ {
+    required double x = 1;
+    required double y = 2;
+    required double z = 3;
+    required double angle = 4;
+ }
