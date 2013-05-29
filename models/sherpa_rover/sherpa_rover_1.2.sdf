@@ -8,73 +8,73 @@
 			<visual name="Arm_Base_visual">
 				<pose>0.39818906784057617 -4.3622790713016e-08 0.4064980745315552 0.0 0.0 0.0</pose>
 				<geometry>
-					<mesh filename="/meshes/Arm_Base.dae"/>
+					<mesh><uri>meshes/Arm_Base.dae</uri></mesh>
 				</geometry>
 			</visual>
 			<visual name="Arm_Part_1_visual">
 				<pose>0.535822868347168 1.2957571016158909e-08 0.40686070919036865 0.0 -0.820505678653717 0.0</pose>
 				<geometry>
-					<mesh filename="/meshes/Arm_Part_1.dae"/>
+					<mesh><uri>meshes/Arm_Part_1.dae</uri></mesh>
 				</geometry>
 			</visual>
 			<visual name="Back_Left_Wheel_Ext_visual">
 				<pose>0.6964254379272461 -0.5033063888549805 0.1422966718673706 -1.3159823453179342e-08 -0.4363322854042053 -5.984919226875718e-08</pose>
 				<geometry>
-					<mesh filename="/meshes/Loose_Wheel.dae"/>
+					<mesh><uri>meshes/Loose_Wheel.dae</uri></mesh>
 				</geometry>
 			</visual>
 			<visual name="Back_Right_Wheel_Ext_visual">
 				<pose>0.6964254379272461 0.5033063888549805 0.1422966718673706 0.0 -2.705261468887329 3.1415939331054688</pose>
 				<geometry>
-					<mesh filename="/meshes/Loose_Wheel.dae"/>
+					<mesh><uri>meshes/Loose_Wheel.dae</uri></mesh>
 				</geometry>
 			</visual>
 			<visual name="Body_visual">
 				<pose>0.004205834120512009 -8.124277428578353e-08 0.4054466485977173 0.0 0.0 0.0</pose>
 				<geometry>
-					<mesh filename="/meshes/Body.dae"/>
+					<mesh><uri>meshes/Body.dae</uri></mesh>
 				</geometry>
 			</visual>
 			<visual name="Box_visual">
 				<pose>0.08009205758571625 -1.417444082107977e-07 0.7942018508911133 0.0 0.0 0.0</pose>
 				<geometry>
-					<mesh filename="/meshes/Box.dae"/>
+					<mesh><uri>meshes/Box.dae</uri></mesh>
 				</geometry>
 			</visual>
 			<visual name="Arm_Part_2_visual">
 				<pose>0.9234867095947266 -5.9047138734058535e-08 0.879021167755127 0.0 -0.04619933292269707 0.0</pose>
 				<geometry>
-					<mesh filename="/meshes/Arm_Part_2.dae"/>
+					<mesh><uri>meshes/Arm_Part_2.dae</uri></mesh>
 				</geometry>
 			</visual>
 			<visual name="Arm_Gripper_visual">
 				<pose>1.4311742782592773 -5.368058282329002e-07 0.912118673324585 2.5259792087867217e-12 -0.3323672115802765 4.1632947847903624e-16</pose>
 				<geometry>
-					<mesh filename="/meshes/Arm_Gripper.dae"/>
+					<mesh><uri>meshes/Arm_Gripper.dae</uri></mesh>
 				</geometry>
 			</visual>
 			<visual name="Front_Left_Wheel_Ext_visual">
 				<pose>-0.34882116317749023 -0.5033063888549805 0.1422966718673706 0.0 -2.705261468887329 0.0</pose>
 				<geometry>
-					<mesh filename="/meshes/Loose_Wheel.dae"/>
+					<mesh><uri>meshes/Loose_Wheel.dae</uri></mesh>
 				</geometry>
 			</visual>
 			<visual name="Front_Right_Wheel_Ext_visual">
 				<pose>-0.34882116317749023 0.5033063888549805 0.1422966718673706 0.0 -0.43633249402046204 3.1415939331054688</pose>
 				<geometry>
-					<mesh filename="/meshes/Loose_Wheel.dae"/>
+					<mesh><uri>meshes/Loose_Wheel.dae</uri></mesh>
 				</geometry>
 			</visual>
 			<visual name="Main_Wheel_Left_visual">
 				<pose>0.16442573070526123 0.3477001190185547 0.14229679107666016 0.0 0.0 0.0</pose>
 				<geometry>
-					<mesh filename="/meshes/Main_Wheel.dae"/>
+					<mesh><uri>meshes/Main_Wheel.dae</uri></mesh>
 				</geometry>
 			</visual>
 			<visual name="Main_Wheel_Right_visual">
 				<pose>0.16442573070526123 -0.3477001190185547 0.14229679107666016 0.0 0.0 0.0</pose>
 				<geometry>
-					<mesh filename="/meshes/Main_Wheel.dae"/>
+					<mesh><uri>meshes/Main_Wheel.dae</uri></mesh>
 				</geometry>
 			</visual>
 		</link>
