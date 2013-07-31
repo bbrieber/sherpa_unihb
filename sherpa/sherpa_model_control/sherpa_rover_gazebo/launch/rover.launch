@@ -1,0 +1,4 @@
+<launch>
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find sherpa_rover_description)/urdf/sherpa_rover.urdf -urdf -z 1 -model Sherpa_Rover"/> 
+</launch>

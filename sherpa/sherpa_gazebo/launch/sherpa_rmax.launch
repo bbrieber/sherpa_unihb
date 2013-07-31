@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<launch>
+<!--group ns="sherpa_rmax"-->
+  <param name="robot_description" textfile="$(find sherpa_rmax_description)/urdf/sherpa_rmax.urdf" />
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <arg name="x" default="0"/>
+  <arg name="y" default="0"/>
+  <arg name="z" default="0"/>
+  <arg name="R" default="0"/>
+  <arg name="P" default="0"/>
+  <arg name="Y" default="0"/>
+  <arg name="model_name" default="Sherpa_RMax"/>
+  <arg name="robot_namespace" default="rmax"/>
+  <node name="spawn_rmax" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg R) -P $(arg P) -Y $(arg Y)  -model $(arg model_name) -robot_namespace $(arg robot_namespace)"/> 
+<!--/group--><!--node name="spawn_rmax" pkg="gazebo_ros" type="spawn_model" args="-file $(find sherpa_rmax_description)/urdf/sherpa_rmax.urdf -urdf -z 1 -model Sherpa_Rmax"/--> 
+</launch>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="robot_namespace" default="human"/>
+    <param name="robot_description" textfile="$(find sherpa_human_dummy_description)/sdf/sherpa_human_dummy_sphere.sdf" />
+    <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+    <arg name="x" default="0"/>
+    <arg name="y" default="0"/>
+    <arg name="z" default="0"/>
+    <arg name="model_name" default="Sherpa_Human"/>
+    <node name="spawn_human" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -sdf -x $(arg x) -y $(arg y) -z $(arg z) -model $(arg model_name) -robot_namespace $(arg robot_namespace)"/> 
+<!--/group--><!--node name="spawn_rmax" pkg="gazebo_ros" type="spawn_model" args="-file $(find sherpa_rmax_description)/urdf/sherpa_rmax.urdf -urdf -z 1 -model Sherpa_Rmax"/--> 
+</launch>

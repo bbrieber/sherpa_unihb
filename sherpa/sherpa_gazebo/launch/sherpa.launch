@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name="spawn_human" default="true"/>
+    <arg name="spawn_basecamp" default="true"/>
+    <arg name="spawn_world" default="false"/>
+    <arg name="spawn_rover" default="true"/>
+    <arg name="spawn_rmax" default="true"/>
+    <arg name="spawn_hector1" default="true"/>
+    <arg name="spawn_hector2" default="true"/>
+    <arg name="spawn_ardrone" default="true"/>
+    
+  <!--group ns="sherpa"-->
+      <!--start gazebo and the world-->
+        <!-- start gazebo server-->
+    <group if="$(arg spawn_human)">
+            
+        <include file="$(find gazebo_ros)/launch/empty_world.launch" >
+            <arg name="world_name" value="$(find sherpa_gazebo)/worlds/sherpa.world" if="$(arg spawn_world)"/>
+            <arg name="gui" value="false"/>
+            <!--$(find find sherpa_gazebo_plugins)/media-->
+        </include>
+
+        <!-- start gazebo client -->
+        <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" respawn="false" output="screen" args="-g libsherpa_human_gui_plugin.so"/>
+        
+        <include file="$(find sherpa_gazebo)/launch/sherpa_human_sphere.launch"/>
+    
+    </group>
+    
+    <include file="$(find gazebo_ros)/launch/empty_world.launch" unless="$(arg spawn_human)">
+        <arg name="world_name" value="$(find sherpa_gazebo)/worlds/sherpa.world" if="$(arg spawn_world)"/>
+    </include>
+    
+    <group ns="rmax" if="$(arg spawn_rmax)">
+        <include file="$(find sherpa_gazebo)/launch/sherpa_rmax.launch">
+            <arg name="x" value="0"/>
+            <arg name="y" value="13.31"/>
+        </include>
+    </group>
+    <group ns="rover" if="$(arg spawn_rover)">
+        <include file="$(find sherpa_gazebo)/launch/sherpa_rover.launch">
+            
+            <arg name="x" value="-0.8"/>
+            <arg name="y" value="-6.6"/>
+        </include>
+    </group>
+    
+    <group ns="hector_1" if="$(arg spawn_hector1)">
+        <include file="$(find sherpa_gazebo)/launch/sherpa_hector.launch">
+            <arg name="x" value="11.67"/>
+            <arg name="y" value="3.21"/>
+            <arg name="z" value="1."/>
+            <arg name="robot_namespace" value="hector_1"/>
+            <arg name="robot_name" value="hector1"/>
+            <arg name="filename" value="hector.urdf"/>
+        </include>
+    </group>
+    
+    <group ns="hector_2" if="$(arg spawn_hector2)">
+        <include file="$(find sherpa_gazebo)/launch/sherpa_hector.launch">
+            <arg name="x" value="9.84"/>
+            <arg name="y" value="6.5"/>
+            <arg name="z" value="1.5"/>
+            <arg name="robot_namespace" value="hector_2"/>
+            <arg name="robot_name" value="hector2"/>
+            <arg name="filename" value="hector2.urdf"/>
+        </include>
+    </group>
+    
+    <group ns="ardrone" if="$(arg spawn_ardrone)">
+        <include file="$(find sherpa_gazebo)/launch/sherpa_ardrone.launch">
+            <arg name="x" value="-6.65"/>
+            <arg name="y" value="7.05"/>
+            <arg name="z" value="1.5"/>
+            <arg name="robot_namespace" value="ardrone"/>
+            <arg name="robot_name" value="ardrone"/>
+        </include>
+    </group>
+    
+    <group ns="base_camp" if="$(arg spawn_basecamp)">
+        <include file="$(find sherpa_gazebo)/launch/sherpa_basecamp.launch">
+        </include>
+    </group>
+</launch>

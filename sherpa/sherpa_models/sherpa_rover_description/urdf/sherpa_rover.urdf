@@ -1,0 +1,423 @@
+<?xml version="1.0"?>
+
+<robot name="sherpa_rover">
+    <!-- 
+    TODO
+    Correct the gripper
+    FIX Collision FOR Gripper?
+    seperate BOX
+    -->
+  <link name="base_link_rover">
+    <!--MAIN_BODY-->
+    <visual>
+      <origin xyz="0.004205834120512009 -8.124277428578353e-08 0.4054466485977173" rpy="0 0 0" />
+      <geometry>
+	<mesh filename="package://sherpa_rover_description/meshes/Body.dae"/>
+      </geometry>
+    </visual>
+    <!--BOX-->
+    <!--TODO make this stand alone-->
+    <visual>
+      <origin xyz="0.08009205758571625 -1.417444082107977e-07 0.7942018508911133" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://sherpa_rover_description/meshes/Box.dae"/>
+      </geometry>
+    </visual>
+    <!--LEFT_CHAINS-->
+    <visual>
+      <origin xyz="0.16442573070526123 0.3477001190185547 0.14229679107666016" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://sherpa_rover_description/meshes/Main_Wheel.dae"/>
+      </geometry>
+    </visual>
+    <!--RIGHT_CHAINS-->
+    <visual>
+      <origin xyz="0.16442573070526123 -0.3477001190185547 0.14229679107666016" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://sherpa_rover_description/meshes/Main_Wheel.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sherpa_rover_description/meshes/Full_Body_Col.dae"/>
+      </geometry>
+        <origin xyz="0.004205834120512009 -8.124277428578353e-08 0.4054466485977173" rpy="0 0 0" />
+    </collision>
+    <inertial>
+      <origin xyz="0 0 1" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia 
+        ixx="1.0" ixy="0.0" ixz="0.0" 
+        iyy="1.0" iyz="0.0" 
+        izz="1.0"/>
+    </inertial>
+  </link>
+  
+  
+  <!-- ARM-LINKS -->
+  <link name="arm_base">
+    <visual>
+      <geometry>
+        <mesh filename="package://sherpa_rover_description/meshes/Arm_Base.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sherpa_rover_description/meshes/Arm_Base_Col.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 1" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia 
+        ixx="1.0" ixy="0.0" ixz="0.0" 
+        iyy="1.0" iyz="0.0" 
+        izz="1.0"/>
+    </inertial>
+  </link>
+  <link name="arm_lower">
+      <visual>
+      <geometry>
+        <mesh filename="package://sherpa_rover_description/meshes/Arm_Part_1.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sherpa_rover_description/meshes/Arm_Part_1_Col.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 1" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia 
+        ixx="1.0" ixy="0.0" ixz="0.0" 
+        iyy="1.0" iyz="0.0" 
+        izz="1.0"/>
+    </inertial>
+  </link>
+  <link name="arm_upper">
+    <visual>
+      <geometry>
+        <mesh filename="package://sherpa_rover_description/meshes/Arm_Part_2.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sherpa_rover_description/meshes/Arm_Part_2_Col.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 1" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia 
+        ixx="1.0" ixy="0.0" ixz="0.0" 
+        iyy="1.0" iyz="0.0" 
+        izz="1.0"/>
+    </inertial>
+  </link>
+  <link name="arm_gripper">
+    <visual>
+      <geometry>
+        <mesh filename="package://sherpa_rover_description/meshes/Arm_Gripper.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sherpa_rover_description/meshes/Arm_Gripper_Col.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 1" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia 
+        ixx="1.0" ixy="0.0" ixz="0.0" 
+        iyy="1.0" iyz="0.0" 
+        izz="1.0"/>
+    </inertial>
+  </link>
+
+  <!-- ARM JOINTS-->
+  <joint name="arm_body_to_base" type="fixed">
+    <parent link="base_link_rover"/>
+    <child link="arm_base"/>
+    
+      <origin xyz="0.39818906784057617 0.0 0.4064980745315552" rpy="0 0 0" />
+  </joint>    
+  
+  <joint name="arm_base_to_lower" type="revolute">
+    <parent link="arm_base"/>
+    <child link="arm_lower"/>
+    <origin xyz="0.1376338005065918 0.0 0.00036263465881347656" rpy="0.0 0.0 0.0" />
+    <axis xyz="0 1 0"/>
+    <limit effort="30" velocity="1.0" lower="-0.8" upper="0.4" />  
+  </joint>    
+  
+  <joint name="arm_lower_to_upper" type="revolute">
+    <parent link="arm_lower"/>
+    <child link="arm_upper"/>
+    <!--origin xyz="0.3876638412475586 0.0 0.4721604585647583" rpy="0.0 0.0 0.0" /-->
+    <origin xyz="0.6097101252698125 0.0 0.03837076473520801" rpy="0.0 0.0 0.0" />
+    
+      <!--origin xyz="0.5252976417541504 0.0 0.4721604585647583" rpy="0.0 -0.77430634573102 0.0" /-->
+    <axis xyz="0 1 0"/>
+    <limit effort="30" velocity="1.0" lower="-2" upper="2" />
+  </joint>    
+  
+  <joint name="arm_upper_to_gripper" type="revolute">
+    <parent link="arm_upper"/>
+    <child link="arm_gripper"/>
+    <origin xyz="0.5056173275473129 0.0 0.005" rpy="0.0 0.0 0.0" />
+    <axis xyz="0 1 0"/>
+    <limit effort="30" velocity="1.0" lower="-1.6" upper="1.6" />
+  </joint>    
+  
+  
+  <!--CHAINS-LINKS-->
+  <link name="chains_loose_front_left">
+    <visual>
+      <geometry>
+        <mesh filename="package://sherpa_rover_description/meshes/Loose_Wheel.dae"/>
+      </geometry>
+    <origin xyz="0.0 0.0 0.0" rpy="3.1415939331054688 0.0 0.0 " />
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sherpa_rover_description/meshes/Loose_Wheel_Col.dae"/>
+      </geometry>
+    <origin xyz="0.0 0.0 0.0" rpy="3.1415939331054688 0.0 0.0 " />
+    </collision>
+    <inertial>
+      <origin xyz="0 0 1" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia 
+        ixx="1.0" ixy="0.0" ixz="0.0" 
+        iyy="1.0" iyz="0.0" 
+        izz="1.0"/>
+    </inertial>
+  </link>
+  
+  <link name="chains_loose_front_right">
+    <visual>
+      <geometry>
+        <mesh filename="package://sherpa_rover_description/meshes/Loose_Wheel.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sherpa_rover_description/meshes/Loose_Wheel_Col.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 1" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia 
+        ixx="1.0" ixy="0.0" ixz="0.0" 
+        iyy="1.0" iyz="0.0" 
+        izz="1.0"/>
+    </inertial>
+  </link>
+  <link name="chains_loose_back_left">
+    <visual>
+      <geometry>
+        <mesh filename="package://sherpa_rover_description/meshes/Loose_Wheel.dae"/>
+      </geometry>
+    <origin xyz="0.0 0.0 0.0" rpy="3.1415939331054688 3.1415939331054688 0.0" />
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sherpa_rover_description/meshes/Loose_Wheel_Col.dae"/>
+      </geometry>
+    <origin xyz="0.0 0.0 0.0" rpy="3.1415939331054688 3.1415939331054688 0.0" />
+    </collision>
+    <inertial>
+      <origin xyz="0 0 1" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia 
+        ixx="1.0" ixy="0.0" ixz="0.0" 
+        iyy="1.0" iyz="0.0" 
+        izz="1.0"/>
+    </inertial>
+  </link>
+  <link name="chains_loose_back_right">
+    <visual>
+      <geometry>
+        <mesh filename="package://sherpa_rover_description/meshes/Loose_Wheel.dae"/>
+      </geometry>
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 3.1415939331054688 0.0" />
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sherpa_rover_description/meshes/Loose_Wheel_Col.dae"/>
+      </geometry>
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 3.1415939331054688 0.0" />
+    </collision>
+    <inertial>
+      <origin xyz="0 0 1" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia 
+        ixx="1.0" ixy="0.0" ixz="0.0" 
+        iyy="1.0" iyz="0.0" 
+        izz="1.0"/>
+    </inertial>
+  </link>
+  
+  
+  <!--CHAINS-JOINTS-->
+  
+  <joint name="chains_body_to_fl" type="continuous">
+    <parent link="base_link_rover"/>
+    <child link="chains_loose_front_left"/>
+      <origin xyz="0.6964254379272461 0.5033063888549805 0.1422966718673706" rpy="0 0 0" />
+    
+    <axis xyz="0 1 0"/>
+  </joint>    
+  
+  <joint name="chains_body_to_fr" type="continuous">
+    <parent link="base_link_rover"/>
+    <child link="chains_loose_front_right"/>
+      <origin xyz="0.6964254379272461 -0.5033063888549805 0.1422966718673706" rpy="0 0 0" />
+    
+    <axis xyz="0 1 0"/>
+  </joint>    
+  <joint name="chains_body_to_bl" type="continuous">
+    <parent link="base_link_rover"/>
+    <child link="chains_loose_back_left"/>
+    
+    <origin xyz="-0.34882116317749023 0.5033063888549805 0.1422966718673706" rpy="0.0 0.0 0.0" />
+      <axis xyz="0 1 0"/>
+  </joint>    
+  
+  <joint name="chains_body_to_br" type="continuous">
+    <parent link="base_link_rover"/>
+    <child link="chains_loose_back_right"/>
+    
+    <origin xyz="-0.34882116317749023 -0.5033063888549805 0.1422966718673706" rpy="0.0 0.0 0.0" />
+      <axis xyz="0 1 0"/>
+  </joint>    
+  <!--COLLISION-WHEELS-->
+  <link name="collision_wheel_left_back">
+    <collision>
+      <geometry>
+	<cylinder radius="0.125" length="0.125"/>
+      </geometry>
+        <origin xyz="0.0 0.0 0.0" rpy="1.57 0 0" />
+    </collision>
+    <inertial>
+      <origin xyz="0 0 1" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia 
+        ixx="1.0" ixy="0.0" ixz="0.0" 
+        iyy="1.0" iyz="0.0" 
+        izz="1.0"/>
+    </inertial>
+  </link>
+  <link name="collision_wheel_right_back">
+    <collision>
+      <geometry>
+	<cylinder radius="0.125" length="0.125"/>
+      </geometry>
+        <origin xyz="0.0 0.0 0.0" rpy="1.57 0 0" />
+    </collision>
+<inertial>
+      <origin xyz="0 0 1" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia 
+        ixx="1.0" ixy="0.0" ixz="0.0" 
+        iyy="1.0" iyz="0.0" 
+        izz="1.0"/>
+    </inertial>
+    </link>
+  <link name="collision_wheel_left_front">
+    <collision>
+      <geometry>
+	<cylinder radius="0.125" length="0.125"/>
+      </geometry>
+        <origin xyz="0.0 0.0 0.0" rpy="1.57 0 0" />
+    </collision>
+    <inertial>
+      <origin xyz="0 0 1" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia 
+        ixx="1.0" ixy="0.0" ixz="0.0" 
+        iyy="1.0" iyz="0.0" 
+        izz="1.0"/>
+    </inertial>
+  </link>
+  <link name="collision_wheel_right_front">
+    <collision>
+      <geometry>
+	<cylinder radius="0.125" length="0.125"/>
+      </geometry>
+        <origin xyz="0.0 0.0 0.0" rpy="1.57 0 0" />
+    </collision>
+    <inertial>
+      <origin xyz="0 0 1" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia 
+        ixx="1.0" ixy="0.0" ixz="0.0" 
+        iyy="1.0" iyz="0.0" 
+        izz="1.0"/>
+    </inertial>
+  </link>
+
+  <joint name="collision_wheel_joint_bl" type="continuous">
+    <parent link="base_link_rover"/>
+    <child link="collision_wheel_left_back"/>
+    <origin xyz="-0.3414655923843384 0.3551374673843384 0.1422966718673706" rpy="0.0 0 0" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <joint name="collision_wheel_joint_br" type="continuous">
+    <parent link="base_link_rover"/>
+    <child link="collision_wheel_right_back"/>
+    <origin xyz="-0.3414655923843384 -0.3551374673843384 0.1422966718673706" rpy="0.0 0 0" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <joint name="collision_wheel_joint_fl" type="continuous">
+    <parent link="base_link_rover"/>
+    <child link="collision_wheel_left_front"/>
+    <origin xyz="0.6964254379272461 0.3551374673843384 0.1422966718673706" rpy="0.0 0 0" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <joint name="collision_wheel_joint_fr" type="continuous">
+    <parent link="base_link_rover"/>
+    <child link="collision_wheel_right_front"/>
+    <origin xyz="0.6964254379272461 -0.3551374673843384 0.1422966718673706" rpy="0.0 0 0" />
+    <axis xyz="0 1 0" />
+  </joint>
+  
+  <transmission name="tran1" type="transmission_interface/SimpleTransmission">
+    <joint name="collision_wheel_joint_bl"/>
+    <actuator name="motor1" type="EffortJointInterface" />
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+  <transmission name="tran2" type="transmission_interface/SimpleTransmission">
+    <joint name="collision_wheel_joint_br"/>
+    <actuator name="motor2" type="EffortJointInterface" />
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+  <transmission name="tran3" type="transmission_interface/SimpleTransmission">
+    <joint name="collision_wheel_joint_fl"/>
+    <actuator name="motor3" type="EffortJointInterface" />
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+  <transmission name="tran4" type="transmission_interface/SimpleTransmission">
+    <joint name="collision_wheel_joint_fr"/>
+    <actuator name="motor4" type="EffortJointInterface" />
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+  
+  <gazebo>
+    <static>false</static>
+    <plugin name="rover_ros_control" filename="libgazebo_ros_control.so">
+      <robotParam>rover/robot_description</robotParam>
+      <controlPeriod>0.001</controlPeriod>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+ 
+    </plugin>
+  </gazebo>
+  
+  
+</robot>

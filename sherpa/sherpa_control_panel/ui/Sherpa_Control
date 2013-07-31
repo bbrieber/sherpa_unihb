@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="Foo">
+    <file>../../sherpa_control_panel/ui/controll_panel.ui</file>
+    <file>../../sherpa_control_panel/ui/main_window.ui</file>
+    <file>../../sherpa_control_panel/ui/WorldDock.ui</file>
+  </qresource>
+</RCC>

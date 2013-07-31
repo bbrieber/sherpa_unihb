@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<launch>
+  <param name="robot_description" textfile="$(find sherpa_base_camp_description)/urdf/sherpa_base_camp.urdf" />
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <arg name="x" default="0"/>
+  <arg name="y" default="0"/>
+  <arg name="z" default="-1"/>
+  <arg name="R" default="0"/>
+  <arg name="P" default="0"/>
+  <arg name="Y" default="0"/>
+  <arg name="robot_name" default="SherpaBaseCamp"/>
+  <arg name="robot_namespace" default="base_camp"/>
+  
+  
+  <node name="spawn_base_camp" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -x $(arg x) -y $(arg y) -z $(arg z)  -R $(arg R) -P $(arg P) -Y $(arg Y) -model $(arg robot_name) -robot_namespace $(arg robot_namespace)"/> 
+  <!--node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find sherpa_rover_description)/urdf/sherpa_rover.urdf -urdf -z 1 -model Sherpa_Rover"/--> 
+</launch>

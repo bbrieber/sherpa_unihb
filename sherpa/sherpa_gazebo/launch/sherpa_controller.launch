@@ -1,0 +1,48 @@
+<launch>
+ <!--rosparam ns="sherpa_rover/ros_control">
+    collision_wheel_joint_bl_position_controller:
+      type: effort_controllers/JointPositionController
+      joint: collision_wheel_joint_bl
+      pid: {p: 100.0, i: 0.01, d: 10.0}
+    collision_wheel_joint_br_position_controller:
+      type: effort_controllers/JointPositionController
+      joint: collision_wheel_joint_br
+      pid: {p: 100.0, i: 0.01, d: 10.0}
+    collision_wheel_joint_fl_position_controller:
+      type: effort_controllers/JointPositionController
+      joint: collision_wheel_joint_fl
+      pid: {p: 100.0, i: 0.01, d: 10.0}
+    collision_wheel_joint_fr_position_controller:
+      type: effort_controllers/JointPositionController
+      joint: collision_wheel_joint_fr
+      pid: {p: 100.0, i: 0.01, d: 10.0}
+  </rosparam-->
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  
+  <!-- roslaunch arguments -->
+  <arg name="debug" default="false"/>
+  <arg name="gui" default="true"/>
+  
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find sherpa_gazebo)/worlds/sherpa.world"/>
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="headless" value="false"/>
+    <!-- more default parameters can be changed here -->
+  </include>
+  
+  <!-- Load the URDF into the ROS Parameter Server -->
+  <param name="robot_description"
+         textfile="$(find sherpa_rover_description)/urdf/sherpa_rover.urdf" />
+
+  <!-- Call a python script to the run a service call to gazebo_ros to spawn a URDF robot -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -model sherpa_rover -param robot_description"/>
+        
+  <include file="$(find sherpa_rover_control)/launch/sherpa_rover_control.launch" />
+  
+  <!--node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find sherpa_rover_description)/urdf/sherpa_rover.urdf -urdf -z 1 -model sherpa_rover" /-->
+  
+</launch>

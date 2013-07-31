@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<launch>
+<group ns="sherpa_rover">
+  <param name="robot_description" textfile="$(find sherpa_rover_description)/urdf/sherpa_rover.urdf" />
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+
+  <node name="spawn_rover" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -z 1 -x 5 -y 5 -model Sherpa_Rover"/> 
+</group>
+  <!--node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find sherpa_rover_description)/urdf/sherpa_rover.urdf -urdf -z 1 -model Sherpa_Rover"/--> 
+</launch>

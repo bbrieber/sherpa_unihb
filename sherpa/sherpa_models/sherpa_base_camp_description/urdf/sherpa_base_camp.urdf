@@ -1,0 +1,65 @@
+<robot name="sherpa_base_camp">
+  
+  <link name="tent1">
+    <!--MAIN_BODY-->
+    <visual>
+      <origin xyz="-9 0 1" rpy="0 0 0" />
+      <geometry>
+	<mesh filename="package://sherpa_base_camp_description/meshes/Tent1.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-9 0 1" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://sherpa_base_camp_description/meshes/Tent1.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 1" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia 
+        ixx="1.0" ixy="0.0" ixz="0.0" 
+        iyy="1.0" iyz="0.0" 
+        izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="9 -8 1" rpy="0 0 2.00712" />
+      <geometry>
+        <mesh filename="package://sherpa_base_camp_description/meshes/Tent2.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="9 -8 1" rpy="0 0 2.00712" />
+      <geometry>
+        <mesh filename="package://sherpa_base_camp_description/meshes/Tent2.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 1" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia 
+        ixx="1.0" ixy="0.0" ixz="0.0" 
+        iyy="1.0" iyz="0.0" 
+        izz="1.0"/>
+    </inertial>
+  </link>
+  
+  <!--link name="tent2">
+    <!--MAIN_BODY-->
+    
+  </link-->
+  
+  
+  <gazebo>
+    <static>true</static>
+    <plugin name="rover_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/sherpa_rover</robotNamespace>
+      <robotParam>/sherpa_rover/robot_description</robotParam>
+      <controlPeriod>0.001</controlPeriod>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+ 
+    </plugin>
+  </gazebo>
+  
+  
+</robot>

@@ -1,0 +1,21 @@
+<launch>
+    <include file="$(find sherpa_gazebo)/launch/sherpa.launch">
+    </include> 
+
+    <param name="/sherpa_rover/robot_description"
+         textfile="$(find sherpa_rover_description)/urdf/sherpa_rover.urdf" />
+         
+    <group ns="sherpa_rover">
+        <param name="/robot_description2"
+         textfile="$(find sherpa_rover_description)/urdf/sherpa_rover.urdf" />
+    </group>
+    
+    <group ns="sherpa_rover2">
+        <param name="/robot_description2"
+         textfile="$(find sherpa_rover_description)/urdf/sherpa_rover.urdf" />
+    </group>
+    
+    <node name="sherpa_control_panel" pkg="sherpa_control_panel" type="sherpa_control_panel" respawn="false" output="screen"/>
+
+</launch>
+

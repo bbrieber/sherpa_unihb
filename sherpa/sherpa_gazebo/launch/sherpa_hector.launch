@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+
+
+ <launch>  
+     
+  <arg name="x" default="0"/>
+  <arg name="y" default="0"/>
+  <arg name="z" default="0"/>
+  <arg name="R" default="0"/>
+  <arg name="P" default="0"/>
+  <arg name="Y" default="0"/>
+  <arg name="robot_name" default="Sherpa Hector1"/>
+  <arg name="robot_namespace" default="hector"/>
+  <arg name="filename" default="hector1.urdf"/>
+
+  <arg name="use_ground_truth_for_tf" default="false" />  
+  <param name="robot_description" textfile="$(find sherpa_hector_description)/urdf/$(arg filename)" />
+   
+   <!-- push robot_description to factory and spawn robot in gazebo -->
+   <node name="spawn_robot" pkg="gazebo_ros" type="spawn_model"
+   args="-param robot_description
+   -urdf
+   -x $(arg x) 
+   -y $(arg y) 
+   -z $(arg z)  
+   -R $(arg R) 
+   -P $(arg P) 
+   -Y $(arg Y) 
+   -model $(arg robot_name) 
+   -robot_namespace $(arg robot_namespace)"
+     respawn="false" output="screen"/>
+
+   <!-- start robot state publisher -->
+   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen" >
+     <param name="publish_frequency" type="double" value="50.0" />
+     <param name="tf_prefix" type="string" value="$(arg robot_namespace)" />
+   </node>
+
+   <node name="ground_truth_to_tf" pkg="message_to_tf" type="message_to_tf" output="screen">
+     <param name="odometry_topic" value="$(arg robot_namespace)/ground_truth/state" />
+     <param name="frame_id" value="/nav" />
+     <param name="tf_prefix" value="$(arg robot_namespace)" if="$(arg use_ground_truth_for_tf)" />
+     <param name="tf_prefix" value="$(arg robot_namespace)/ground_truth" unless="$(arg use_ground_truth_for_tf)" />
+   </node>
+   <node name="state_to_tf" pkg="message_to_tf" type="message_to_tf" output="screen" unless="$(arg use_ground_truth_for_tf)">
+     <param name="odometry_topic" value="$(arg robot_namespace)/state" />
+     <param name="frame_id" value="/nav" />
+     <param name="tf_prefix" value="$(arg robot_namespace)" />
+   </node>
+   <!-- node name="hector_pose_estimation" pkg="hector_pose_estimation" type="hector_pose_estimation_node" output="screen"/-->
+
+   <arg name="motors" default="robbe_2827-34_epp1045" />
+   <rosparam command="load" file="$(find hector_quadrotor_controller)/param/quadrotor_aerodynamics.yaml" ns="$(arg robot_namespace)"/>
+   <rosparam command="load" file="$(find hector_quadrotor_controller)/param/$(arg motors).yaml" ns="$(arg robot_namespace)" />
+ </launch>

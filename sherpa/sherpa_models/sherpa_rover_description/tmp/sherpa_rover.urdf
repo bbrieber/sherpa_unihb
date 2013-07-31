@@ -1,0 +1,94 @@
+<robot name="sherpa_rover">
+  <link name="main_body">
+    <visual>
+      <geometry>
+	<mesh filename="package://meshes/Body.dae"/>
+      </geometry>
+    </visual>
+  </link>
+<!--
+  <link name="box">
+  </link>
+  <link name="arm_base">
+  </link>
+  <link name="arm_lower">
+  </link>
+  <link name="arm_upper">
+  </link>
+  <link name="gripper">
+  </link>
+  <link name="chains_main_left">
+  </link>
+  <link name="chains_main_right">
+  </link>
+  <link name="chains_loose_front_left">
+  </link>
+  <link name="chains_loose_front_right">
+  </link>
+  <link name="chains_loose_back_left">
+  </link>
+  <link name="chains_loose_back_right">
+  </link>
+-->
+  <link name="wheel_left_back">
+    <collision>
+      <origin xyz="0 0 0" rpy="0.5 0 0"/>
+      <geometry>
+	<cylinder radius="0.5" length="0.5"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="wheel_right_back">
+    <collision>
+      <origin xyz="0 0 0" rpy="0.5 0 0"/>
+      <geometry>
+	<cylinder radius="0.5" length="0.5"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="wheel_left_front">
+    <collision>
+      <origin xyz="0 0 0" rpy="0.5 0 0"/>
+      <geometry>
+	<cylinder radius="0.5" length="0.5"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="wheel_right_front">
+    <collision>
+      <origin xyz="0 0 0" rpy="0.5 0 0"/>
+      <geometry>
+	<cylinder radius="0.5" length="0.5"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="wheel_joint_lb" type="continuous">
+    <parent link="main_body"/>
+    <child link="wheel_left_back"/>
+    <origin xyz="5 3 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <joint name="wheel_joint_rb" type="continuous">
+    <parent link="main_body"/>
+    <child link="wheel_right_back"/>
+    <origin xyz="5 3 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <joint name="wheel_joint_lf" type="continuous">
+    <parent link="main_body"/>
+    <child link="wheel_left_front"/>
+    <origin xyz="5 3 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <joint name="wheel_joint_rf" type="continuous">
+    <parent link="main_body"/>
+    <child link="wheel_right_front"/>
+    <origin xyz="5 3 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+</robot>

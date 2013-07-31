@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="x" default="0"/>
+  <arg name="y" default="0"/>
+  <arg name="z" default="0"/>
+  <arg name="rx" default="0"/>
+  <arg name="ry" default="0"/>
+  <arg name="rz" default="0"/>
+  <arg name="robot_name" default="MyRobot"/>
+  <arg name="robot_namespace" default="my_robot_ns"/>
+  <group ns="$(arg robot_namespace)">
+    <param name="/robot_description" textfile="$(find sherpa_rover_description)/urdf/sherpa_rover.urdf" />
+    <param name="robot_description" textfile="$(find sherpa_rover_description)/urdf/sherpa_rover.urdf" />
+    <node name="spawn_$(arg robot_name)" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -x $(arg x) -y $(arg y) -z $(arg z) -model $(arg robot_name) -robot_namespace $(arg robot_namespace)"/> 
+    </group> 
+</launch>
